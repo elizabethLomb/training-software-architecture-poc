@@ -1,0 +1,47 @@
+# version: "3.8"
+# services:
+#   gateway-service:
+#     build: ../services/gateway-service
+#     ports:
+#       - "5000:5000"
+#     depends_on:
+#       - auth-service
+#       - listing-service
+#       - booking-service
+#       - payment-service
+#       - review-service
+
+#   auth-service:
+#     build: ../services/auth-service
+#     ports:
+#       - "5001:5001"
+
+#   listing-service:
+#     build: ../services/listing-service
+#     ports:
+#       - "5002:5002"
+
+#   booking-service:
+#     build: ../services/booking-service
+#     ports:
+#       - "5003:5003"
+
+#   payment-service:
+#     build: ../services/payment-service
+#     ports:
+#       - "5004:5004"
+
+#   review-service:
+#     build: ../services/review-service
+#     ports:
+#       - "5005:5005"
+
+#   db:
+#     image: postgres:15
+#     restart: always
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: main_db
+#     ports:
+#       - "5432:5432"
