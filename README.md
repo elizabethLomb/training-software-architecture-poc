@@ -1,4 +1,4 @@
-# training-software-architecture-poc
+# Training Software Architecture PoC
 Full-stack architecture using Next.js, Node.js, and versioned APIs.
 
 This monorepo showcases a scalable software architecture with:
@@ -21,29 +21,11 @@ This monorepo showcases a scalable software architecture with:
 
 This architecture is designed for scalability, maintainability, and performance! 🚀
 
-## Overview
-/training-software-architecture-poc
-│── /apps
-│   │── /web-app             # Next.js frontend
-│
-│── /services
-│   ├── /gateway-service       # Handles web app communication
-│   ├── /auth-service          # Handles authentication
-│   ├── /listing-service       # Manages property listings
-│   ├── /booking-service       # Handles reservations
-│   ├── /payment-service       # Integrates Stripe/PayPal
-│   ├── /review-service        # Handles user reviews
-│   ├── /notification-service  # Sends emails, SMS, push notifications
-│   ├── /search-service        # Handles property search & recommendations
-│   ├── /api-docs              # Swagger API documentation
-│
-│── /infra
-│   │── docker-compose.yml     # Manages all services
-│
-│── README.md
+## 📂 Project Structure
+📂 /training-software-architecture-poc │── 📂 /apps │ ├── 🌍 /web-app # Next.js frontend │ │── 📂 /services │ ├── 🔗 /gateway-service # Handles web app communication │ ├── 🔐 /auth-service # Handles authentication │ ├── 🏡 /listing-service # Manages property listings │ ├── 📅 /booking-service # Handles reservations │ ├── 💰 /payment-service # Integrates Stripe/PayPal │ ├── ⭐ /review-service # Handles user reviews │ ├── 📩 /notification-service # Sends emails, SMS, push notifications │ ├── 🔍 /search-service # Handles property search & recommendations │ ├── 📄 /api-docs # Swagger API documentation │ │── 📂 /infra │── 🐳 docker-compose.yml # Manages all services │── 📖 README.md
 
-## Prerequisite
+## 🛠️ Tech Stack
 
-## Install
+## 📜 Install
 
 ## Testing
