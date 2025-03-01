@@ -1,5 +1,5 @@
 # training-software-architecture-poc
-A modular full-stack architecture using Next.js, Node.js, and versioned APIs. 🚀
+Full-stack architecture using Next.js, Node.js, and versioned APIs. 🚀
 
 This monorepo showcases a scalable software architecture with:
 
