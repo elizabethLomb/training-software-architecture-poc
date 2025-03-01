@@ -17,15 +17,34 @@ This monorepo showcases a scalable software architecture with:
 * 🐳 Docker Compose for local development & containerized deployment.
 * 🗄️ Database Service - Centralized PostgreSQL or MongoDB instance.
 * 🔄 CI/CD Automation with GitHub Actions.
-* ✅ Testing - Unit, integration, and end-to-end tests using Jest and Cypress.
+* 🧪 Testing - Unit, integration, and end-to-end tests using Jest and Cypress.
 
 This architecture is designed for scalability, maintainability, and performance! 🚀
 
 ## 📂 Project Structure
-📂 /training-software-architecture-poc │── 📂 /apps │ ├── 🌍 /web-app # Next.js frontend │ │── 📂 /services │ ├── 🔗 /gateway-service # Handles web app communication │ ├── 🔐 /auth-service # Handles authentication │ ├── 🏡 /listing-service # Manages property listings │ ├── 📅 /booking-service # Handles reservations │ ├── 💰 /payment-service # Integrates Stripe/PayPal │ ├── ⭐ /review-service # Handles user reviews │ ├── 📩 /notification-service # Sends emails, SMS, push notifications │ ├── 🔍 /search-service # Handles property search & recommendations │ ├── 📄 /api-docs # Swagger API documentation │ │── 📂 /infra │── 🐳 docker-compose.yml # Manages all services │── 📖 README.md
+```
+/training-software-architecture-poc
+│── /apps
+│   │── /web-app             # Next.js frontend
+│
+│── /services
+│   ├── /gateway-service       # Handles web app communication
+│   ├── /auth-service          # Handles authentication
+│   ├── /listing-service       # Manages property listings
+│   ├── /booking-service       # Handles reservations
+│   ├── /payment-service       # Integrates Stripe/PayPal
+│   ├── /review-service        # Handles user reviews
+│   ├── /notification-service  # Sends emails, SMS, push notifications
+│   ├── /search-service        # Handles property search & recommendations
+│
+│── /infra
+│   │── docker-compose.yml     # Manages all services
+│
+│── README.md
+```
 
 ## 🛠️ Tech Stack
 
-## 📜 Install
+## 📦 Install
 
-## Testing
+## 🧪 Testing
