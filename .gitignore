@@ -52,3 +52,7 @@ coverage/
 
 # Optional OS-specific files
 Thumbs.db
+
+# Docs
+docs/*.drawio
+*.drawio
