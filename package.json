@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
     "lint-staged": "lint-staged",
-    "prepare": "husky install",
+    "prepare": "husky install || true",
     "commitlint": "commitlint --edit"
   },
   "lint-staged": {
