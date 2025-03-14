@@ -22,6 +22,9 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install Husky in Root
+        run: npm install husky --global
+
       # Install dependencies for the web app
       - name: Install Dependencies (Web App)
         run: |
