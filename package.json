@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "prepare": "husky install",
+    "commitlint": "commitlint --edit"
+  },
+  "lint-staged": {
+    "apps/web-app/**/*.{js,jsx,ts,tsx}": "npx next lint --fix",
+    "services/**/*.{js,ts}": "npx eslint --fix"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.5.0"
+  }
+}
