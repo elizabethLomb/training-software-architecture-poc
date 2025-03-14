@@ -54,4 +54,5 @@ coverage/
 Thumbs.db
 
 # Docs
-documentation/
+docs/*.drawio
+*.drawio

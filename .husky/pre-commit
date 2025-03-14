@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Get changed files
+changed_files=$(git diff --cached --name-only)
+
+# Determine which project to lint
+if echo "$changed_files" | grep -q '^apps/web-app/'; then
+  (cd apps/web-app && npx lint-staged)
+elif echo "$changed_files" | grep -q '^services/'; then
+  (cd services && npx lint-staged)
+else
+  echo "No frontend or backend files changed. Skipping lint."
+fi
