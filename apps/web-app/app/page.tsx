@@ -1,6 +1,14 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
+import { Header } from '@/components/common';
+import { Container } from '@mui/material';
 
 export default function HomePage() {
-  return <><h1>Hello Next.js!</h1><Button variant="contained">Button</Button></>;
+  return (
+    <>
+      <Header />
+      <Container>
+        <p>HOME Page</p>
+      </Container>
+    </>
+  );
 }
