@@ -17,6 +17,9 @@ const eslintConfig = [
       'next/core-web-vitals',
       path.resolve(import.meta.dirname, '../../eslint.config.cjs')
     ],
+    rules: {
+      '@next/next/no-html-link-for-pages': ['error', '../../'],
+    },
     settings: {
       next: {
         rootDir: '../../',
