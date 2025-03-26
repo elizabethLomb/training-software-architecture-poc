@@ -1,28 +1,37 @@
 import * as React from 'react';
 import {
   AppBar,
-  Container,
-  Menu,
   Toolbar,
   Typography,
   Box,
-  Avatar, Button, IconButton, MenuItem, Tooltip } from '@mui/material';
+  Container,
+} from '@mui/material';
 import BedroomParentRoundedIcon from '@mui/icons-material/BedroomParentRounded';
+import { ROUTES } from '@/constants/v1/routes';
+import { User } from '@/interfaces/v1/User';
+import { CustomLink, ProfileDropdown } from '@/components/common/index';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  user: User
+}
+
+export const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
-    <AppBar component="nav" position="sticky" color="inherit">
+    <AppBar component="nav" position="fixed" color="inherit">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <BedroomParentRoundedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography variant="h6" noWrap component="h6">
-            LOGO
-          </Typography>
+        <Toolbar>
+          <CustomLink url={ROUTES.PUBLIC.HOME} sx={{ display: 'flex', alignItems: 'center' }}>
+            <BedroomParentRoundedIcon sx={{ mr: 1 }} color="primary" />
+            <Typography variant="h6" noWrap component="h6" mr={2}>
+              LOGO
+            </Typography>
+          </CustomLink>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <Menu open={false}>
-
-            </Menu>
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+            <CustomLink url={ROUTES.PUBLIC.HOME}>Home</CustomLink>
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <ProfileDropdown user={user} />
           </Box>
         </Toolbar>
       </Container>
