@@ -11,7 +11,7 @@ interface CustomLinkProps {
 }
 
 export const CustomLink: React.FC<CustomLinkProps> = ({
-  url, children, sx
+  url = '#', children, sx
 }) => (
   <StyledLink sx={sx} href={url}>{children}</StyledLink>
 );
