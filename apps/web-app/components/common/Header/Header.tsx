@@ -15,14 +15,20 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
-    <AppBar component="nav" position="fixed" color="inherit" elevation={0}>
+    <AppBar
+      component="nav"
+      position="fixed"
+      color="inherit"
+      variant="outlined"
+      sx={{ padding: '5px 0' }}
+    >
       <Container maxWidth="xl">
         <Toolbar>
           <CustomLink url={ROUTES.PUBLIC.HOME} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/assets/images/logo.png" alt="Logo" width={100} height={80} style={{ objectFit: 'cover', objectPosition: 'center' }} />
+            <Image src="/assets/images/logo.png" alt="Logo" width={100} height={65} style={{ objectFit: 'contain', objectPosition: 'center' }} />
           </CustomLink>
 
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <CustomLink url={ROUTES.PUBLIC.HOME}>Home</CustomLink>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
