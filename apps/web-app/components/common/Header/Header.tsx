@@ -2,32 +2,33 @@ import * as React from 'react';
 import {
   AppBar,
   Toolbar,
-  Typography,
   Box,
   Container,
 } from '@mui/material';
-import BedroomParentRoundedIcon from '@mui/icons-material/BedroomParentRounded';
 import { ROUTES } from '@/constants/v1/routes';
 import { User } from '@/interfaces/v1/User';
 import { CustomLink, ProfileDropdown } from '@/components/common/index';
-
+import Image from 'next/image';
 interface HeaderProps {
   user: User
 }
 
 export const Header: React.FC<HeaderProps> = ({ user }) => {
   return (
-    <AppBar component="nav" position="fixed" color="inherit">
+    <AppBar
+      component="nav"
+      position="fixed"
+      color="inherit"
+      variant="outlined"
+      sx={{ padding: '5px 0' }}
+    >
       <Container maxWidth="xl">
         <Toolbar>
           <CustomLink url={ROUTES.PUBLIC.HOME} sx={{ display: 'flex', alignItems: 'center' }}>
-            <BedroomParentRoundedIcon sx={{ mr: 1 }} color="primary" />
-            <Typography variant="h6" noWrap component="h6" mr={2}>
-              LOGO
-            </Typography>
+            <Image src="/assets/images/logo.png" alt="Logo" width={100} height={65} style={{ objectFit: 'contain', objectPosition: 'center' }} />
           </CustomLink>
 
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <CustomLink url={ROUTES.PUBLIC.HOME}>Home</CustomLink>
           </Box>
           <Box sx={{ flexGrow: 0 }}>

@@ -1,16 +1,20 @@
 'use client';
 
 import * as React from 'react';
+import { ROUTES } from '@/constants/v1/routes';
+import { User } from '@/interfaces/v1/User';
 import {
   Avatar,
+  Box,
   IconButton,
   Menu,
   MenuItem,
   Tooltip,
 } from '@mui/material';
-import { ROUTES } from '@/constants/v1/routes';
-import { User } from '@/interfaces/v1/User';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import LanguageIcon from '@mui/icons-material/Language';
 import { CustomLink } from '@/components/common/index';
+import { StyledIconButton } from './styles';
 
 interface ProfileDropdownProps {
   user: User
@@ -41,14 +45,20 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
 
   return (
     <>
-      <Tooltip title="Open settings">
-        <IconButton onClick={handleOnClick} sx={{ p: 0 }}>
-          <Avatar
-            alt={user?.name ?? ''}
-            src={!user ? '/static/images/avatar/2.jpg' : user?.picture}
-          />
-        </IconButton>
-      </Tooltip>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Tooltip title="Change language">
+          <IconButton color="inherit"><LanguageIcon /></IconButton>
+        </Tooltip>
+        <Tooltip title="Open settings">
+          <StyledIconButton onClick={handleOnClick} sx={{ p: 0 }}>
+            <MenuRoundedIcon />
+            <Avatar
+              alt={user?.name ?? ''}
+              src={!user ? '/static/images/avatar/2.jpg' : user?.picture}
+            />
+          </StyledIconButton>
+        </Tooltip>
+      </Box>
       <Menu
         id="profile-dropdown"
         anchorEl={anchorEl}
@@ -64,7 +74,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
         open={open}
         onClose={handleOnClose}
       >
-        {(!user ? logOutUser : logInUser).map(({ title, url }) => (
+        {(!Object.keys(user).length ? logOutUser : logInUser).map(({ title, url }) => (
           <MenuItem key={title}>
             <CustomLink url={url}>{title}</CustomLink>
           </MenuItem>

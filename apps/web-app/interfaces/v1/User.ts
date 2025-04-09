@@ -1,10 +1,11 @@
+export type UserRole = 'admin' | 'guest' | 'host' | 'cohost';
+
 export interface User {
   id: number
   name: string
+  lastName: string
   email: string
-  role: string
-  status: string
+  password: string
+  role: UserRole
   picture: string
-  created_at: string
-  updated_at: string
 }
