@@ -1,23 +1,41 @@
-// import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 // import jwt from 'jsonwebtoken';
-
-const users: { username: string; password: string }[] = [];
+import { User } from '../models/v1/User';
+import sql from '../store/db';
+import { hashPassword } from '../utils/hash';
 
 const SECRET_KEY = 'your-secret-key';
 
-export const createUser = async (username: string, password: string) => {
-  console.log('Called createUser');
-  // const existingUser = users.find(user => user.username === username);
-  // if (existingUser) {
-  //   throw new Error('Username already exists');
-  // }
+export const findUserByEmail = async (email: string) => {
+  const [user] = await sql`
+    SELECT * FROM users WHERE email = ${email} AND is_deleted = false;
+  `;
+  return user;
+};
 
-  // const hashedPassword = await bcrypt.hash(password, 10);
+export const createUser = async (data: User) => {
+  if (!data.email || !data.password) {
+    throw new Error('Missing required fields');
+  }
 
-  // const newUser = { username, password: hashedPassword };
-  // users.push(newUser);
+  const { name, last_name, email, role = 'guest', password } = data;
+  const existingUser = await findUserByEmail(email);
 
-  // return newUser;
+  if (existingUser) {
+    throw new Error('Email already exists');
+  }
+  const hashedPassword = await hashPassword(password);
+
+  try {
+    const [user] = await sql`
+      INSERT INTO users (name, last_name, email, role, password, is_deleted)
+      VALUES (${name}, ${last_name}, ${email}, ${sql.json(role)}, ${hashedPassword}, DEFAULT)
+      RETURNING id, name, email, role;
+    `;
+    return user;
+  } catch (error) {
+    throw new Error(`Something went wrong: ${error}`);
+  }
 };
 
 export const authenticateUser = async (username: string, password: string) => {
