@@ -8,4 +8,4 @@ export interface User {
   role: UserRoleEnum[]
   password: string
   is_deleted: boolean
-};
+}

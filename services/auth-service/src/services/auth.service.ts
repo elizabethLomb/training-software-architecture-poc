@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import { User } from '../models/v1/User';
 import sql from '../store/db';
 import { hashPassword } from '../utils/hash';
+import { logger } from '../../lib/logger';
 
 const SECRET_KEY = 'your-secret-key';
 
@@ -34,7 +35,8 @@ export const createUser = async (data: User) => {
     `;
     return user;
   } catch (error) {
-    throw new Error(`Something went wrong: ${error}`);
+    logger.error('Database error:', error);
+    throw new Error('Database error while creating user');
   }
 };
 

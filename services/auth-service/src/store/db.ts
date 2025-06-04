@@ -8,7 +8,7 @@ const connectionString = process.env.DATABASE_URL;
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 if (!process.env.DATABASE_URL) {
-  logger.error('❌ DATABASE_URL no está definida en .env');
+  logger.error('❌ DATABASE_URL is missing');
   process.exit(1);
 }
 
