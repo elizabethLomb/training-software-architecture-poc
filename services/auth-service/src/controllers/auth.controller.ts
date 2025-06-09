@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createUser } from '../services/auth.service';
+import { authenticateUser, createUser } from '../services/auth.service';
 import { logger } from '../../lib/logger';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
@@ -7,7 +7,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
   try {
     const newUser = await createUser(user);
-    res.status(201).json(newUser);
+    res.status(res.statusCode).json(newUser);
   } catch (error: any) {
     logger.error('Error on register:', error);
     res.status(400).json({ error: error.message || 'Unexpected error' });
@@ -15,13 +15,13 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const login = async (req: Request, res: Response): Promise<void> => {
-  console.log('Called login');
-  // const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  // try {
-  //   const token = await authenticateUser(username, password);
-  //   res.status(200).json({ message: 'Login successful', token });
-  // } catch (error) {
-  //   res.status(400).json({ error: error.message });
-  // }
+  try {
+    const token = await authenticateUser(email, password);
+    res.status(res.statusCode).json(token);
+  } catch (error: any) {
+    logger.error('Error on register:', error);
+    res.status(400).json({ error: error.message || 'Unexpected error' });
+  }
 };
