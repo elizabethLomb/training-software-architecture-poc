@@ -14,8 +14,11 @@ This service provides authentication and user management for the architecture Po
 
 ## 🛠️ Setup
 
-### Install node dependencies
+### Prerequisite
+- Node.js 20.x
+- npm 10.x
 
+### Install node dependencies
 ```npm install```
 
 ### Environment variables
@@ -24,10 +27,13 @@ Create a `.env` file in the root of the project and place the values like `sampl
 ### Migration
 ```npm run db:migrate```
 
-## Run
+## ✅ Run
 
 ### Development environment
 ```npm run start:dev```
 
+## Health check
+`GET /api/health`
+
 ## 🧪 Test
-```npm test```
+```npm run test```
