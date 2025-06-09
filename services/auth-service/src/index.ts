@@ -5,10 +5,11 @@ import {
   healthcheckRouter,
 } from './routes/index';
 import { requestLogger } from '../middleware/requestLogger';
+import config from '../config';
 
 const app = express();
-const port = process.env.PORT || 3001;
-const server = process.env.NODE_SERVER || 'http://localhost';
+const port = config.server.port;
+const server = config.server.host;
 
 app.use(express.json());
 

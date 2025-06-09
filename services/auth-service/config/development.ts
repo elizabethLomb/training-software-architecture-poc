@@ -1,4 +1,6 @@
 import { ConfigProps } from '../src/models/v1/Config';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const developmentConfig: ConfigProps = {
   server: {
