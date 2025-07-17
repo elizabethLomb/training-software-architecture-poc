@@ -1,5 +1,5 @@
 import express from 'express';
-import { setupSwagger } from '../docs/swagger/index';
+import { setupSwagger } from '../docs/swagger';
 import {
   authRoutes,
   healthcheckRouter,

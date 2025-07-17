@@ -12,7 +12,6 @@ export interface ConfigDatabaseProps {
 
 export interface ConfigJwtProps {
   secret: string
-  expires: string
 }
 
 export interface ConfigProps {

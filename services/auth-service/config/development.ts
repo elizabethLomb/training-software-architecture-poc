@@ -15,7 +15,6 @@ const developmentConfig: ConfigProps = {
   },
   jwt: {
     secret: process.env.JWT_SECRET || 'fallback_dev_secret',
-    expires: '1h',
   },
 };
 

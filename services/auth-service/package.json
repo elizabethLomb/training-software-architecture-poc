@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "NODE_ENV=production ts-node src/index.ts",
-    "start:dev": "NODE_ENV=development ts-node src/index.ts",
+    "start:dev": "NODE_ENV=development nodemon --watch src --ext ts,js,json --exec ts-node src/index.ts",
     "db:migrate": "ts-node src/store/migration.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

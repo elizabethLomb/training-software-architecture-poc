@@ -69,11 +69,10 @@ export const authenticateUser = async (email: string, password: string): Promise
   };
 
   const SECRET_KEY = String(config.jwt.secret);
-  const TOKEN_EXPIRATION = Number(config.jwt.expires);  
 
   const token = jwt.sign(userPayload, SECRET_KEY, {
-    expiresIn: TOKEN_EXPIRATION,
     algorithm: 'HS256',
+    expiresIn: Math.floor(Date.now() / 1000) + (60 * 60), // 1 hour
   });
 
   logger.info(`Authenticated user: ${user.id}`);

@@ -1,8 +1,8 @@
 /**
  * @openapi
- * /api/auth/register:
+ * /api/auth/login:
  *   post:
- *     summary: Register a new user
+ *     summary: Login a user
  *     tags: [Auth]
  *     requestBody:
  *       required: true
@@ -14,22 +14,13 @@
  *               - email
  *               - password
  *             properties:
- *               name:
- *                 type: string
- *               last_name:
- *                 type: string
  *               email:
  *                 type: string
  *               password:
  *                 type: string
- *               role:
- *                 type: array
- *                 items:
- *                   type: string
- *                 example: ["guest"]
  *     responses:
- *       201:
- *         description: User registered successfully
+ *       200:
+ *         description: Successful login, returns JWT token
  *       400:
- *         description: Bad request
+ *         description: Invalid credentials
  */
