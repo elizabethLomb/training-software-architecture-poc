@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
   role JSONB NOT NULL DEFAULT '["guest"]'::JSONB,
   password TEXT NOT NULL,
   is_deleted BOOLEAN DEFAULT FALSE,
+  properties JSONB  NOT NULL DEFAULT '[]'::JSONB,
   created_on TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()),
   updated_on TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
 );

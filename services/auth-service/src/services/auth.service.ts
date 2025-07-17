@@ -6,9 +6,6 @@ import { hashPassword } from '../utils/hash';
 import { logger } from '../../lib/logger';
 import config from '../../config';
 
-const SECRET_KEY = String(config.jwt.secret);
-const TOKEN_EXPIRATION = Number(config.jwt.expires);
-
 export const findUserByEmail = async (email: string) => {
   const [user] = await sql<User[]>`
     SELECT * FROM users WHERE email = ${email} AND is_deleted = false;
@@ -16,12 +13,12 @@ export const findUserByEmail = async (email: string) => {
   return user;
 };
 
-export const createUser = async (data: User) => {
+export const createUser = async (data: User): Promise<Omit<User, 'password'>> => {
   if (!data.email || !data.password) {
     throw new Error('Missing required fields');
   }
 
-  const { name, last_name, email, role = 'guest', password } = data;
+  const { name, last_name, email, role = ['guest'], password } = data;
   const existingUser = await findUserByEmail(email);
 
   if (existingUser) {
@@ -30,11 +27,13 @@ export const createUser = async (data: User) => {
   const hashedPassword = await hashPassword(password);
 
   try {
-    const [user] = await sql<User[]>`
+    const [user] = await sql<Omit<User[], 'password'>>`
       INSERT INTO users (name, last_name, email, role, password, is_deleted)
       VALUES (${name}, ${last_name}, ${email}, ${sql.json(role)}, ${hashedPassword}, DEFAULT)
-      RETURNING id, name, email, role;
+      RETURNING id, name, last_name, email, role;
     `;
+
+    logger.info(`User created with ID: ${user.id}`);
     
     return user;
   } catch (error) {
@@ -43,33 +42,38 @@ export const createUser = async (data: User) => {
   }
 };
 
-export const authenticateUser = async (email: string, password: string) => {
+export const authenticateUser = async (email: string, password: string): Promise<string> => {
   if (!email || !password) {
+    logger.error('Email or password is missing');
     throw new Error('Missing email or password');
   }
 
   const user = await findUserByEmail(email);
 
-  if (!user) {
-    throw new Error('User not found');
+  if (!user || user.is_deleted) {
+    throw new Error('Invalid email or password');
   }
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
+    logger.error('Invalid password for user:', email);
     throw new Error('Invalid email or password');
   }
 
   const userPayload = {
     sub: user.id,
     name: user.name,
-    lastName: user.last_name,
     email: user.email,
     role: user.role,
   };
 
+  const SECRET_KEY = String(config.jwt.secret);
+  const TOKEN_EXPIRATION = Number(config.jwt.expires);  
+
   const token = jwt.sign(userPayload, SECRET_KEY, {
     expiresIn: TOKEN_EXPIRATION,
+    algorithm: 'HS256',
   });
 
   logger.info(`Authenticated user: ${user.id}`);

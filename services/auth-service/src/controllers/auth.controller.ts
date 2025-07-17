@@ -22,6 +22,6 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.status(res.statusCode).json(token);
   } catch (error: any) {
     logger.error('Error on register:', error);
-    res.status(400).json({ error: error.message || 'Unexpected error' });
+    res.status(400).json({ error: error.message || 'Invalid credentials' });
   }
 };
