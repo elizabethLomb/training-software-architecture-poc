@@ -1,9 +1,10 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Express } from 'express';
+import config from '../../config/index';
 
-const port = process.env.PORT || 3001;
-const server = process.env.NODE_SERVER || 'http://localhost';
+const port = config.server.port;
+const server = config.server.host;
 
 const options: swaggerJSDoc.Options = {
   definition: {
@@ -15,7 +16,7 @@ const options: swaggerJSDoc.Options = {
     },
     servers: [{ url: `${server}:${port}` }],
   },
-  apis: ['src/routes/*.ts'],
+  apis: ['src/routes/*.ts', 'docs/swagger/routes/**/*.ts'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);

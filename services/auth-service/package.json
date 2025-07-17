@@ -5,19 +5,25 @@
   "author": "",
   "license": "UNLICENSED",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon"
+    "start": "NODE_ENV=production ts-node src/index.ts",
+    "start:dev": "NODE_ENV=development nodemon --watch src --ext ts,js,json --exec ts-node src/index.ts",
+    "db:migrate": "ts-node src/store/migration.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "postgres": "^3.4.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.15.2",
     "@types/swagger-jsdoc": "^6.0.4",
