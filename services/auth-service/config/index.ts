@@ -1,9 +1,12 @@
 import developmentConfig from './development';
+import testingConfig from './testing';
 
 const ENV = process.env.NODE_ENV || 'development';
 
 const loadConfig = (env: string) => {
   switch (env) {
+    case 'test':
+      return testingConfig;
     case 'development':
       return developmentConfig;
     // Add other environments as needed
