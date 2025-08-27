@@ -2,11 +2,11 @@
   "name": "auth-service",
   "version": "1.0.0",
   "description": "auth service",
-  "author": "",
+  "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "start": "NODE_ENV=production ts-node src/index.ts",
-    "start:dev": "NODE_ENV=development nodemon --watch src --ext ts,js,json --exec ts-node src/index.ts",
+    "dev": "NODE_ENV=development nodemon --watch src --ext ts,js,json --exec ts-node src/index.ts",
     "db:migrate": "ts-node src/store/migration.ts",
     "db:seed": "ts-node src/store/seed.ts",
     "test": "NODE_ENV=test jest --runInBand",
