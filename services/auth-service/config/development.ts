@@ -4,8 +4,8 @@ dotenv.config();
 
 const developmentConfig: ConfigProps = {
   server: {
-    port: process.env.PORT || 3001,
-    host: process.env.NODE_SERVER || 'http://localhost',
+    port: process.env.PORT || 5001,
+    host: process.env.NODE_SERVER || 'http://127.0.0.1',
     env: process.env.NODE_ENV || 'development',
   },
   databases: {
