@@ -19,5 +19,5 @@ app.use('/api/auth', authRoutes);
 app.use('/api/health', healthcheckRouter);
 
 app.listen(port, () => {
-  console.log(`Server is running on ${server}:${port}`);
+  console.log(`[Auth] - Server is running on ${server}:${port}`);
 });
