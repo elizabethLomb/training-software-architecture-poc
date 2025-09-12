@@ -7,6 +7,9 @@ const developmentConfig = {
   services: {
     'service-auth': 'http://auth-service:5001/api/v1'
   },
+  corsOptions: {
+    origin: '*',
+  },
 };
 
 module.exports = developmentConfig;
