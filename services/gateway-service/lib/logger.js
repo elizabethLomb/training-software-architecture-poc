@@ -12,7 +12,7 @@ const logger = winston.createLogger({
     }),
   ),
   exitOnError: false,
-  transports: getTransports(selectedLoggers),
+  transports: new winston.transports.Console(),
 });
 
 logger.info = logger.info.bind(logger);

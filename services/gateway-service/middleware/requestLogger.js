@@ -1,5 +1,5 @@
 const morgan = require('morgan');
-const logger = require('../../lib/logger');
+const logger = require('../lib/logger');
 
 module.exports = () => {
   const skippedPaths = [
