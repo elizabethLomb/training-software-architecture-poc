@@ -5,8 +5,6 @@ TBD
 ## 🚀 Features
 
 - TBD
-- Logging with Winston and HTTP request logging with Morgan
-- Swagger/OpenAPI documentation (auto-generated from JSDoc and available at `/api-docs`)
 - Environment-based configuration
 
 ## 🛠️ Setup
