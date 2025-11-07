@@ -14,14 +14,14 @@ const app = express();
 const port = config.server.port;
 const server = config.server.host;
 
-// PROXY ROUTES
-app.use('/health', healthcheckRouter);
-app.use('/auth', authProxy);
-
-app.use(express.json());
+app.disable('x-powered-by');
 app.use(cors());
+app.set('trust proxy', 1);
 app.use(requestLogger(app));
 app.use(cookieParser());
+
+// PROXY ROUTES
+app.use('/identity', authProxy);
 
 app.use(bodyParser.text({ limit: '50mb', extended: true }));
 app.use(bodyParser.json({ limit: '50mb', extended: true }));
@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.get('/', (req, res) => {
   res.send('Hello from gateway service');
 });
+app.use('/health', healthcheckRouter);
 
 app.listen(port, () => {
   console.log(`[Gateway] - Server is running on ${server}:${port}`);

@@ -1,9 +1,11 @@
 'use client';
 import * as React from 'react';
-import { Paper, Button, TextField, Typography } from '@mui/material';
+import { Paper, Button, TextField, Typography, Alert } from '@mui/material';
 import { RegisterFormProps } from '@/interfaces/v1/Forms';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/v1/routes';
+import { registerUser } from '@/server/actions/v1/auth.actions';
+import { useRouter } from 'next/navigation';
 
 export const FormRegister: React.FC = () => {
   const [formData, setFormData] = React.useState<RegisterFormProps>({
@@ -13,6 +15,8 @@ export const FormRegister: React.FC = () => {
     password: '',
     confirmPassword: ''
   });
+  const [error, setError] = React.useState<string | null>(null);
+  const router = useRouter();
 
   const handleOnChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -24,8 +28,15 @@ export const FormRegister: React.FC = () => {
     }));
   };
 
-  const handleOnsubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleOnsubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    try {
+      await registerUser(formData);
+      router.push(ROUTES.PUBLIC.LOGIN);
+    } catch (error: unknown) {
+      console.error('Registration failed', error);
+      setError((error as Error).message ?? 'Registration failed');
+    }
   };
 
   return (
@@ -34,7 +45,7 @@ export const FormRegister: React.FC = () => {
       sx={{ maxWidth: 600, margin: 'auto', padding: 4, textAlign: 'center' }}
     >
       <Typography component="h2" variant="h5">Register</Typography>
-      <form id="form-register" onSubmit={handleOnsubmit}>
+      <form id="form-register" onSubmit={(e) => void handleOnsubmit(e)}>
         <TextField
           id="name"
           name="name"
@@ -104,6 +115,7 @@ export const FormRegister: React.FC = () => {
         </Button>
         <Link href={ROUTES.PUBLIC.LOGIN}>I already have an account</Link>
       </form>
+      {error?.length && <Alert severity="error">error</Alert>}
     </Paper>
   );
 };

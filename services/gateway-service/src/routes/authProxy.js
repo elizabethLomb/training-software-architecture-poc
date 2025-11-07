@@ -10,7 +10,7 @@ router.use(
   createProxyMiddleware({
     target: authServiceUrl,
     changeOrigin: true,
-    pathRewrite: { '^/auth': '/' },
+    pathRewrite: (path, req) => `/auth/${path}`,
   })
 );
 

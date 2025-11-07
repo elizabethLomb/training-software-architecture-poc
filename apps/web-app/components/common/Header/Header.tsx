@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
           </CustomLink>
 
           <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <CustomLink url={ROUTES.PUBLIC.HOME}>Home</CustomLink>
+            <CustomLink url={ROUTES.PUBLIC.HOME} sx={{ fontWeight: '600' }}>Alojamientos</CustomLink>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <ProfileDropdown user={user} />

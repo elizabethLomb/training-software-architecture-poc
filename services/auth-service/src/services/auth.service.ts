@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { omit } from 'lodash';
-import { User } from '../models/v1/User';
+import { User, UserBO } from '../models/v1/User';
 import sql from '../store/db';
 import { hashPassword } from '../utils/hash';
 import { logger } from '../../lib/logger';
@@ -18,12 +18,12 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
   return user;
 };
 
-export const createUser = async (data: User): Promise<Omit<User, 'password' | 'is_deleted'>> => {
+export const createUser = async (data: UserBO): Promise<Omit<UserBO, 'password' | 'is_deleted'>> => {
   if (!data.email || !data.password) {
     throw new Error('Missing required fields');
   }
 
-  const { name, last_name, email, role = ['guest'], password } = data;
+  const { name, lastName, email, role = ['guest'], password, properties = {} } = data;
   const existingUser = await findUserByEmail(email);
 
   if (existingUser) {
@@ -33,14 +33,19 @@ export const createUser = async (data: User): Promise<Omit<User, 'password' | 'i
 
   try {
     const [user] = await sql<Omit<User[], 'password' | 'is_deleted'>>`
-      INSERT INTO users (name, last_name, email, role, password, is_deleted)
-      VALUES (${name}, ${last_name}, ${email}, ${sql.json(role)}, ${hashedPassword}, DEFAULT)
+      INSERT INTO users (name, last_name, email, role, password, is_deleted, properties)
+      VALUES (${name}, ${lastName}, ${email}, ${sql.json(role)}, ${hashedPassword}, DEFAULT, ${sql.json(properties)})
       RETURNING id, name, last_name, email, role;
     `;
 
     logger.info(`User created with ID: ${user.id}`);
 
-    return omit(user, 'password', 'is_deleted');
+    const userBO = {
+      ...user,
+      lastName: user.last_name,
+    };
+
+    return omit(userBO, 'password', 'is_deleted');
   } catch (error) {
     logger.error('Database error:', error);
     throw new Error('Database error while creating user');
