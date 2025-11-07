@@ -4,9 +4,9 @@ import { logger } from '../../lib/logger';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   const user = req.body;
-
   try {
     const newUser = await createUser(user);
+    logger.info('User registered successfully:', newUser.email);
     res.status(res.statusCode).json(newUser);
   } catch (error: any) {
     logger.error('Error on register:', error);
