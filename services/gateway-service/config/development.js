@@ -5,7 +5,7 @@ const developmentConfig = {
     env: process.env.NODE_ENV || 'development',
   },
   services: {
-    'service-auth': 'http://auth-service:5001/api/v1'
+    'service-auth': 'http://127.0.0.1:5002'
   },
   corsOptions: {
     origin: '*',

@@ -3,7 +3,7 @@ const router = Router();
 
 router.get('/', (req, res) => {
   res.set('Content-Type', 'text/plain');
-  const message = 'Service is running';
+  const message = 'Gateway Service is running';
   res.send(message.toString());
 });
 

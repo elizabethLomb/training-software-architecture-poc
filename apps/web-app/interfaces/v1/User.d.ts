@@ -1,4 +1,10 @@
-import { UserRoleEnum } from './UserRoleEnum';
+export const UserRoleEnum = {
+  ADMIN: 'admin',
+  GUEST: 'guest',
+  HOST: 'host',
+};
+
+export type UserRoleEnum = typeof UserRoleEnum[keyof typeof UserRoleEnum];
 
 export interface User {
   id: number
@@ -7,6 +13,5 @@ export interface User {
   email: string
   role: UserRoleEnum[]
   password: string
-  is_deleted: boolean
   properties: Record<string, unknown>
 }

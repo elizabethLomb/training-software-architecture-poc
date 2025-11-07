@@ -15,8 +15,12 @@ app.use(express.json());
 
 requestLogger(app);
 setupSwagger(app);
-app.use('/api/auth', authRoutes);
-app.use('/api/health', healthcheckRouter);
+
+app.get('/', (req, res) => {
+  res.send('Hello from auth service');
+});
+app.use('/auth', authRoutes);
+app.use('/health', healthcheckRouter);
 
 app.listen(port, () => {
   console.log(`[Auth] - Server is running on ${server}:${port}`);
