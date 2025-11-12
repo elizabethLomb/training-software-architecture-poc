@@ -1,10 +1,13 @@
 'use server';
 
+import { developmentConfig } from '@/config/development';
 import { RegisterFormProps } from '@/interfaces/v1/Forms';
 import { User } from '@/interfaces/v1/User';
 
+const { services } = developmentConfig;
+
 export const loginUser = async (email: string, password: string): Promise<User> => {
-  const response = await fetch('http://127.0.0.1:5001/identity/login', {
+  const response = await fetch(`${services['service-auth'].gateway}/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +26,7 @@ export const loginUser = async (email: string, password: string): Promise<User> 
 
 export const registerUser = async (formData: RegisterFormProps):Promise<User> => {
   try {
-    const response = await fetch('http://127.0.0.1:5001/identity/register', {
+    const response = await fetch(`${services['service-auth'].gateway}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
