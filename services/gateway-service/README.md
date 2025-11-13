@@ -1,15 +1,18 @@
-# Getaway Service
 
-TBD
+# Gateway Service
+
+API gateway service for the microservices architecture.
 
 ## 🚀 Features
 
-- TBD
 - Environment-based configuration
+- Authentication proxy
+- Health check endpoint
+- Ready for integration with other microservices
 
 ## 🛠️ Setup
 
-### Prerequisite
+### Prerequisites
 - Node.js 20.x
 - npm 10.x
 
@@ -17,7 +20,7 @@ TBD
 ```npm install```
 
 ### Environment variables
-Create a `.env` file in the root of the project and place the values like `sample.env`
+Create a `.env` file in the root of the project and add the variables as shown in `sample.env`.
 
 ## ✅ Run
 
