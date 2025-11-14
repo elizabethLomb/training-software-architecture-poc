@@ -1,14 +1,12 @@
 
-# Gateway Service
+# Listing Service
 
-API gateway service for the microservices architecture.
+The Listing Service is responsible for managing all operations related to listings, including processing, handling, and maintaining listing data in the database. It provides endpoints and business logic for creating, updating, retrieving, and deleting listings within the platform.
 
 ## 🚀 Features
 
 - Environment-based configuration
-- Authentication proxy
 - Health check endpoint
-- Ready for integration with other microservices
 
 ## 🛠️ Setup
 

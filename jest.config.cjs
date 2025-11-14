@@ -4,6 +4,7 @@ module.exports = {
     '<rootDir>/apps/web-app/jest.config.ts',
     '<rootDir>/services/auth-service/jest.config.cjs',
     '<rootDir>/services/gateway-service/jest.config.cjs',
+    '<rootDir>/services/listing-service/jest.config.cjs',
   ],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
 };

@@ -10,7 +10,7 @@ const developmentConfig: ConfigProps = {
   },
   databases: {
     postgreSql: {
-      connectionString: process.env.DATABASE_URL || 'postgres://user:password@localhost:5432/aujth_service',
+      connectionString: process.env.DATABASE_URL || 'postgres://user:password@localhost:5432/auth_service',
     },
   },
   jwt: {
