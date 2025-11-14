@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS listing_security (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
+  name TEXT UNIQUE NOT NULL,
   description TEXT,
   value BOOLEAN DEFAULT FALSE
 );
